@@ -120,4 +120,5 @@ while not exit:
             print()
             print("About:")
             print("Created By: Hayden S, Hunter C, and Max S")
-            print("v")
+            print("version: 1.1.1")
+            print("PyFile is a simple to use file manager")
