@@ -1,4 +1,3 @@
-
 import csv
 import os
 import sys
@@ -7,7 +6,7 @@ import getpass
 usr_dat = ".usr_dat"
 new_usr_var = "NewUser"
 new_pas = "Admin12"
-term_prompt = "$"
+term_prompt = "$ "
 
 path = ".term"
 if os.path.exists(path) and os.path.isdir(path):
@@ -69,7 +68,6 @@ def new_usr(usr_dat,new_usr_var,new_pas):
         else:
             print("That user alredy exsists.")
 
-
 is_logged_in = False
 while not is_logged_in:
     usr = login(input("Enter Username: "), getpass.getpass("Enter Password: "), usr_dat,new_usr_var,new_pas)
@@ -91,8 +89,9 @@ else:
 os.chdir(path)
 
 exit = False
+path_str = "/Main"
 while not exit:
-    command = input(usr + term_prompt)
+    command = input(usr + path_str + term_prompt)
     if command != "":
         if os.path.exists(command):
             os.system("python3 " + command)
@@ -123,4 +122,21 @@ while not exit:
             print("v")
         elif command[:5] == "mkdir":
             dirname = command[6:]
-            os.mkdir(dirname)            
+            os.mkdir(dirname)
+        elif command[:2] == "cd":
+            if os.path.isdir(command[3:]):
+                if command[3:] == "../":
+                    path_table = path_str.split("/")
+                    if len(path_table) > 2:
+                        path_str = "/"
+                        for i in range(len(path_table) - 1):
+                            if i > 1:
+                                path_str = path_str + "/" + path_table[i]
+                            else:
+                                path_str = path_str + path_table[i]
+                        os.chdir(command[3:])
+                else:
+                    path_str = path_str + "/" + command[3:]
+                    os.chdir(command[3:])
+            else:
+                print("Directory does not exsist. Use mkdir.")
