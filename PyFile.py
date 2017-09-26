@@ -28,6 +28,7 @@ if name.lower() == "hayden" or name.lower() == "max" or name.lower() == "hunter"
 import csv
 import os
 import sys
+import getpass
 
 usr_dat = ".usr_dat"
 new_usr_var = "NewUser"
