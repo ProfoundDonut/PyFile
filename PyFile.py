@@ -1,6 +1,7 @@
 #What is this going to be about?
 def loop():
 
-variable = True
-while variable == True:
+    
+name = input("What is your name? \n")
+if name.lower() == "hayden" or name.lower() == "max" or name.lower() == "hunter":
     loop()
