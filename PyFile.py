@@ -94,13 +94,17 @@ exit = False
 while not exit:
     command = input(usr + term_prompt)
     if command != "":
-        if os.path.exists(command + ".py"):
-            os.system("python3 " + command + ".py")
+        if os.path.exists(command):
+            os.system("python3 " + command)
         elif command == "exit":
             os._exit(1)
         elif command[:4] == "edit":
-            if os.path.exists(command[5:] + ".py"):
-                os.system("open -a Atom.app"+command[5:]+".py")
+            if os.path.exists(command[5:]):
+                os.system("nano "+command[5:])
             else:
-                open(command[5:]+".py", 'w').close()
-                os.system("open -a Atom.app "+command[5:]+".py")
+                open(command[5:], 'w').close()
+                os.system("nano "+command[5:])
+        elif command == "ls" or command == "list":
+            table = os.listdir()
+            for i in range(len(table)):
+                print(table[i])
