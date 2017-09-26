@@ -81,8 +81,8 @@ def new_usr(usr_dat,new_usr_var,new_pas):
         if not found:
             done1 = False
             while not done1:
-                pas = input("Enter New Password: ")
-                check_pas = input("Confirm New Password: ")
+                pas = getpass.getpass("Enter New Password: ")
+                check_pas = getpass.getpass("Confirm New Password: ")
                 if pas == check_pas:
                     table = table + [[usr,pas]]
                     write(".usr_dat", table)
@@ -97,7 +97,7 @@ def new_usr(usr_dat,new_usr_var,new_pas):
 
 is_logged_in = False
 while not is_logged_in:
-    usr = login(input("Enter Username: "), input("Enter Password: "), usr_dat,new_usr_var,new_pas)
+    usr = login(input("Enter Username: "), getpass.getpass("Enter Password: "), usr_dat,new_usr_var,new_pas)
     if usr == "nil":
         print("Invalid username or password.")
     elif usr == new_usr_var:
