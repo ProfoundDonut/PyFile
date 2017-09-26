@@ -116,9 +116,12 @@ while not exit:
             print("about | Information about PyFile")
             print("list | Lists all files under user (ls shortcut)")
             print("setting | ")
+            elif("settings | Access to settings")
         elif command == "about":
             print()
             print("About:")
             print("Created By: Hayden S, Hunter C, and Max S")
             print("version: 1.1.1")
             print("PyFile is a simple to use file manager")
+        elif command == "settings":
+            
