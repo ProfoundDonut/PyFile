@@ -121,6 +121,6 @@ while not exit:
             print("About:")
             print("Created By: Hayden S, Hunter C, and Max S")
             print("v")
-        elif command == "mkdir":
-            dirname = input("What is the name of the directory you want to make? ")
+        elif command[:5] == "mkdir":
+            dirname = command[6:]
             os.mkdir(dirname)            
