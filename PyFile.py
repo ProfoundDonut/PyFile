@@ -108,3 +108,16 @@ while not exit:
             table = os.listdir()
             for i in range(len(table)):
                 print(table[i])
+        elif command == "help":
+            print()
+            print("Help:")
+            print("edit [file name] | Opens file for edit or, if ther is no file found, creates new file")
+            print("exit | Exits PyFile")
+            print("about | Information about PyFile")
+            print("list | Lists all files under user (ls shortcut)")
+            print("setting | ")
+        elif command == "about":
+            print()
+            print("About:")
+            print("Created By: Hayden S, Hunter C, and Max S")
+            print("v")
