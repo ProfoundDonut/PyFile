@@ -114,7 +114,9 @@ while not exit:
             print("exit | Exits PyFile")
             print("about | Information about PyFile")
             print("list | Lists all files under user (ls shortcut)")
-            print("setting | ")
+            print("setting | not working right now")
+            print("mkdir | make a folder")
+
         elif command == "about":
             print()
             print("About:")
@@ -123,6 +125,7 @@ while not exit:
         elif command[:5] == "mkdir":
             dirname = command[6:]
             os.mkdir(dirname)
+<<<<<<< HEAD
         elif command[:2] == "cd":
             if os.path.isdir(command[3:]):
                 if command[3:] == "../":
@@ -140,3 +143,7 @@ while not exit:
                     os.chdir(command[3:])
             else:
                 print("Directory does not exsist. Use mkdir.")
+=======
+        else:
+            print("That is not a command please type 'help' to get help with commands.")
+>>>>>>> 414e762eeca845dadf930b62340550eb17f7d6a2
