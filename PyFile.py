@@ -2,6 +2,7 @@ import csv
 import os
 import sys
 import getpass
+from random import randint
 
 usr_dat = ".usr_dat"
 new_usr_var = "NewUser"
@@ -165,5 +166,10 @@ while not exit:
                         print("Directory is not empty.")
                 else:
                     print("File does not exist.")
+            elif command == "randint":
+                num = int(input("Input smaller number: "))
+                num2 = int(input("Input bigger number: "))
+                num3 = int(randint(num, num2))
+                print(str(num3))
             else:
                 print("That is not a command please type 'help' to get help with commands.")
