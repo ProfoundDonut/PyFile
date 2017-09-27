@@ -105,6 +105,7 @@ while not exit:
     if command != "":
         if os.path.exists(command):
             os.system("python3 " + command)
+<<<<<<< HEAD
         else:
             command = command.lower()
             if command == "exit":
@@ -143,6 +144,49 @@ while not exit:
                             os.chdir(command[3:])
                     else:
                         path_str = path_str + "/" + command[3:]
+=======
+        elif command == "exit":
+            os._exit(1)
+        elif command[:4] == "edit":
+            if os.path.exists(command[5:]):
+                os.system("nano "+command[5:])
+            else:
+                open(command[5:], 'w').close()
+                os.system("nano "+command[5:])
+        elif command == "ls" or command == "list":
+            table = os.listdir()
+            for i in range(len(table)):
+                print(table[i])
+        elif command == "help":
+            print()
+            print("Help:")
+            print("edit [file name] | Opens file for edit or, if ther is no file found, creates new file")
+            print("exit | Exits PyFile")
+            print("about | Information about PyFile")
+            print("list | Lists all files under user (ls shortcut)")
+            print("setting | not working right now")
+            print("mkdir | make a folder")
+
+        elif command == "about":
+            print()
+            print("About:")
+            print("Created By: Hayden S, Hunter C, and Max S")
+            print("v")
+        elif command[:5] == "mkdir":
+            dirname = command[6:]
+            os.mkdir(dirname)
+        elif command[:2] == "cd":
+            if os.path.isdir(command[3:]):
+                if command[3:] == "../":
+                    path_table = path_str.split("/")
+                    if len(path_table) > 2:
+                        path_str = "/"
+                        for i in range(len(path_table) - 1):
+                            if i > 1:
+                                path_str = path_str + "/" + path_table[i]
+                            else:
+                                path_str = path_str + path_table[i]
+>>>>>>> 6f6d3f7724abaf2df2be039493e35c613be9d0f5
                         os.chdir(command[3:])
                 else:
                     print("Directory does not exsist. Use mkdir.")
@@ -164,4 +208,10 @@ while not exit:
                 else:
                     print("File does not exist.")
             else:
+<<<<<<< HEAD
                 print("That is not a command please type 'help' to get help with commands.")
+=======
+                print("Directory does not exsist. Use mkdir.")
+        else:
+            print("That is not a command please type 'help' to get help with commands.")
+>>>>>>> 6f6d3f7724abaf2df2be039493e35c613be9d0f5
