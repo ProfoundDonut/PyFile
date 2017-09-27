@@ -1,0 +1,5 @@
+
+There will be major changes to pyfile 2.0.
+Do not continue to 2.0 untill approved by the majority of the development team. 
+
+Thanks for your help, Hunter and Hayden.
