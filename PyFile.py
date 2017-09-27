@@ -8,6 +8,16 @@ new_usr_var = "NewUser"
 new_pas = "Admin12"
 term_prompt = "$ "
 
+help_text = """Help:
+edit [file name] | Opens file for edit or, if ther is no file found, creates new file
+exit | Exits PyFile
+about | Information about PyFile
+list | Lists all files under user (ls shortcut)
+setting | not working right now
+mkdir | make a folder
+cd | Changes the current directory.
+delete [file name] | deletes the specified file."""
+
 path = ".term"
 if os.path.exists(path) and os.path.isdir(path):
     print("Terminal path loaded.")
@@ -66,7 +76,7 @@ def new_usr(usr_dat,new_usr_var,new_pas):
                 else:
                     print("Password not consistant.")
         else:
-            print("That user alredy exsists.")
+            print("That user alredy exists.")
 
 is_logged_in = False
 while not is_logged_in:
@@ -95,55 +105,63 @@ while not exit:
     if command != "":
         if os.path.exists(command):
             os.system("python3 " + command)
-        elif command == "exit":
-            os._exit(1)
-        elif command[:4] == "edit":
-            if os.path.exists(command[5:]):
-                os.system("nano "+command[5:])
-            else:
-                open(command[5:], 'w').close()
-                os.system("nano "+command[5:])
-        elif command == "ls" or command == "list":
-            table = os.listdir()
-            for i in range(len(table)):
-                print(table[i])
-        elif command == "help":
-            print()
-            print("Help:")
-            print("edit [file name] | Opens file for edit or, if ther is no file found, creates new file")
-            print("exit | Exits PyFile")
-            print("about | Information about PyFile")
-            print("list | Lists all files under user (ls shortcut)")
-            print("setting | not working right now")
-            print("mkdir | make a folder")
-
-        elif command == "about":
-            print()
-            print("About:")
-            print("Created By: Hayden S, Hunter C, and Max S")
-            print("v")
-        elif command[:5] == "mkdir":
-            dirname = command[6:]
-            os.mkdir(dirname)
-<<<<<<< HEAD
-        elif command[:2] == "cd":
-            if os.path.isdir(command[3:]):
-                if command[3:] == "../":
-                    path_table = path_str.split("/")
-                    if len(path_table) > 2:
-                        path_str = "/"
-                        for i in range(len(path_table) - 1):
-                            if i > 1:
-                                path_str = path_str + "/" + path_table[i]
-                            else:
-                                path_str = path_str + path_table[i]
+        else:
+            command = command.lower()
+            if command == "exit":
+                os._exit(1)
+            elif command[:4] == "edit":
+                if os.path.exists(command[5:]):
+                    os.system("nano "+command[5:])
+                else:
+                    open(command[5:], 'w').close()
+                    os.system("nano "+command[5:])
+            elif command == "ls" or command == "list":
+                table = os.listdir()
+                for i in range(len(table)):
+                    print(table[i])
+            elif command == "help":
+                print(help_text)
+            elif command == "about":
+                print()
+                print("About:")
+                print("Created By: Hayden S, Hunter C, and Max S")
+                print("v")
+            elif command[:5] == "mkdir":
+                dirname = command[6:]
+                os.mkdir(dirname)
+            elif command[:2] == "cd":
+                if os.path.isdir(command[3:]):
+                    if command[3:] == "../":
+                        path_table = path_str.split("/")
+                        if len(path_table) > 2:
+                            path_str = "/"
+                            for i in range(len(path_table) - 1):
+                                if i > 1:
+                                    path_str = path_str + "/" + path_table[i]
+                                else:
+                                    path_str = path_str + path_table[i]
+                            os.chdir(command[3:])
+                    else:
+                        path_str = path_str + "/" + command[3:]
                         os.chdir(command[3:])
                 else:
-                    path_str = path_str + "/" + command[3:]
-                    os.chdir(command[3:])
+                    print("Directory does not exsist. Use mkdir.")
+            elif command[:6] == "delete":
+                if os.path.exists(command[7:]) and not os.path.isdir(command[7:]):
+                    confirm = input("Conformation (Y/N): ")
+                    if confirm.lower() == "y" or confirm.lower() == "yes" or confirm.lower() == "ya":
+                        try:
+                            os.remove(command[7:])
+                        except:
+                            print("Error deleting file.")
+                    else:
+                        print("Delete canceled.")
+                elif os.path.exists(command[7:]) and os.path.isdir(command[7:]):
+                    try:
+                        os.rmdir(command[7:])
+                    except:
+                        print("Directory is not empty.")
+                else:
+                    print("File does not exist.")
             else:
-                print("Directory does not exsist. Use mkdir.")
-=======
-        else:
-            print("That is not a command please type 'help' to get help with commands.")
->>>>>>> 414e762eeca845dadf930b62340550eb17f7d6a2
+                print("That is not a command please type 'help' to get help with commands.")
